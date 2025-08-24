@@ -15,16 +15,16 @@ Type "help" for help.
 ```
 ## Show all databases:
 ```
-postgres=# \l
-List of databases
-Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges
+user-db=# \l
+                                                      List of databases
+   Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges
 -----------+----------+----------+-----------------+------------+------------+------------+-----------+-----------------------
-postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
-template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
-|          |          |                 |            |            |            |           | postgres=CTc/postgres
-template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
-|          |          |                 |            |            |            |           | postgres=CTc/postgres
-user-db   | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
+ postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
+ template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+           |          |          |                 |            |            |            |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+           |          |          |                 |            |            |            |           | postgres=CTc/postgres
+ user-db   | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
 (4 rows)
 ```
 
