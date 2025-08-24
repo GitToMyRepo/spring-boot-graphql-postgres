@@ -1,4 +1,4 @@
-package com.bezkoder.springgraphql.mysql.logging;
+package com.bezkoder.springgraphql.postgres.logging;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.WriteListener;

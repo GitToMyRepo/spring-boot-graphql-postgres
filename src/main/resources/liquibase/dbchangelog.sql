@@ -51,3 +51,13 @@ INSERT INTO tutorial (id, title, description, author_id) VALUES (nextval('tutori
 INSERT INTO tutorial (id, title, description, author_id) VALUES (nextval('tutorial_seq'), 'Orlando', 'Novel', (SELECT id FROM author WHERE name = 'Virginia Woolf'));
 INSERT INTO tutorial (id, title, description, author_id) VALUES (nextval('tutorial_seq'), 'Oliver Twist', 'Novel', (SELECT id FROM author WHERE name = 'Charles Dickens'));
 INSERT INTO tutorial (id, title, description, author_id) VALUES (nextval('tutorial_seq'), 'Nine Stories', 'Short stories', (SELECT id FROM author WHERE name = 'J. D. Salinger'));
+
+-- changeset audit-schema:001
+CREATE TABLE graphql_audit_log (
+  id BIGSERIAL PRIMARY KEY,
+  request_body JSONB,
+  response_body JSONB,
+  request_reason VARCHAR(255),
+  client_ip VARCHAR(50),
+  timestamp TIMESTAMP
+);

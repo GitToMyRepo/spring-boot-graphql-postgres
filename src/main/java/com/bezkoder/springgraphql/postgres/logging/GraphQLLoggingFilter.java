@@ -1,9 +1,12 @@
-package com.bezkoder.springgraphql.mysql.logging;
+package com.bezkoder.springgraphql.postgres.logging;
 
+import com.bezkoder.springgraphql.postgres.model.GraphQLAuditLog;
+import com.bezkoder.springgraphql.postgres.repository.GraphQLAuditLogRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
@@ -11,14 +14,18 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 
 @Component
 public class GraphQLLoggingFilter extends OncePerRequestFilter {
+    @Autowired
+    private GraphQLAuditLogRepository auditLogRepository;
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         return !request.getRequestURI().contains("/apis/graphql");
     }
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -31,15 +38,19 @@ public class GraphQLLoggingFilter extends OncePerRequestFilter {
         filterChain.doFilter(wrappedRequest, wrappedResponse);
 
         String requestBody = new String(wrappedRequest.getContentAsByteArray(), StandardCharsets.UTF_8);
-        String reason = wrappedRequest.getHeader("X-Request-Reason");
-        if (reason != null) {
-            logger.info("Audit Header - X-Request-Reason: " + reason);
-        }
         String responseBody = new String(wrappedResponse.getContentAsByteArray(), StandardCharsets.UTF_8);
+        String reason = wrappedRequest.getHeader("X-Request-Reason");
+        String clientIp = request.getRemoteAddr();
 
-        logger.info("Incoming GraphQL Request:\n" + requestBody);
-        logger.info("Outgoing GraphQL Response:\n" + responseBody);
+        GraphQLAuditLog log = new GraphQLAuditLog();
+        log.setRequestBody(requestBody);
+        log.setResponseBody(responseBody);
+        log.setRequestReason(reason);
+        log.setClientIp(clientIp);
+        log.setTimestamp(LocalDateTime.now());
 
-        wrappedResponse.copyBodyToResponse(); // Important: write response back to client
+        auditLogRepository.save(log);
+
+        wrappedResponse.copyBodyToResponse();
     }
 }

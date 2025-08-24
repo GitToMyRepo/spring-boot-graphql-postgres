@@ -1,9 +1,9 @@
-package com.bezkoder.springgraphql.mysql.resolver;
+package com.bezkoder.springgraphql.postgres.resolver;
 
-import com.bezkoder.springgraphql.mysql.model.Author;
-import com.bezkoder.springgraphql.mysql.model.Tutorial;
-import com.bezkoder.springgraphql.mysql.repository.AuthorRepository;
-import com.bezkoder.springgraphql.mysql.repository.TutorialRepository;
+import com.bezkoder.springgraphql.postgres.model.Author;
+import com.bezkoder.springgraphql.postgres.model.Tutorial;
+import com.bezkoder.springgraphql.postgres.repository.AuthorRepository;
+import com.bezkoder.springgraphql.postgres.repository.TutorialRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.scalars.ExtendedScalars;
 import graphql.schema.GraphQLScalarType;

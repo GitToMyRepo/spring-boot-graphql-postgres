@@ -1,17 +1,15 @@
-package com.bezkoder.springgraphql.mysql.resolver;
+package com.bezkoder.springgraphql.postgres.resolver;
 
-import java.util.Optional;
-
+import com.bezkoder.springgraphql.postgres.model.Author;
+import com.bezkoder.springgraphql.postgres.model.Tutorial;
+import com.bezkoder.springgraphql.postgres.repository.AuthorRepository;
+import com.bezkoder.springgraphql.postgres.repository.TutorialRepository;
+import graphql.kickstart.tools.GraphQLMutationResolver;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bezkoder.springgraphql.mysql.model.Author;
-import com.bezkoder.springgraphql.mysql.model.Tutorial;
-import com.bezkoder.springgraphql.mysql.repository.AuthorRepository;
-import com.bezkoder.springgraphql.mysql.repository.TutorialRepository;
-
-import graphql.kickstart.tools.GraphQLMutationResolver;
-import jakarta.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 
 @Component

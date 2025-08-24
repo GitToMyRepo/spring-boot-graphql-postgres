@@ -7,6 +7,12 @@ It is a Postgres database version of _spring-boot-graphql-mysql_ (https://github
 mvn spring-boot:run
 ```
 
+## Create _user-db_ database (if needed)
+```
+PS C:\Users\kenwu> docker run --name spring-test-postgres-container -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=user-db -p 5432:5432 -d postgres
+570b83843cbc57dacece1a50b8e0af086edbc8a2b7ac246f418b1e579d532f70
+```
+
 ## Connect to the database
 ```
 PS C:\Users\kenwu> docker exec -it spring-test-postgres-container psql -U postgres

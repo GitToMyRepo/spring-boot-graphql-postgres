@@ -1,8 +1,7 @@
-package com.bezkoder.springgraphql.mysql.repository;
+package com.bezkoder.springgraphql.postgres.repository;
 
+import com.bezkoder.springgraphql.postgres.model.Tutorial;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.bezkoder.springgraphql.mysql.model.Tutorial;
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
 

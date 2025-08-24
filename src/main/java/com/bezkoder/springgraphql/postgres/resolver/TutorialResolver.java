@@ -1,16 +1,13 @@
-package com.bezkoder.springgraphql.mysql.resolver;
+package com.bezkoder.springgraphql.postgres.resolver;
 
-import com.bezkoder.springgraphql.mysql.SpringBootGraphqlMysqlApplication;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.bezkoder.springgraphql.mysql.model.Author;
-import com.bezkoder.springgraphql.mysql.model.Tutorial;
-import com.bezkoder.springgraphql.mysql.repository.AuthorRepository;
-
+import com.bezkoder.springgraphql.postgres.model.Author;
+import com.bezkoder.springgraphql.postgres.model.Tutorial;
+import com.bezkoder.springgraphql.postgres.repository.AuthorRepository;
 import graphql.kickstart.tools.GraphQLResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class TutorialResolver implements GraphQLResolver<Tutorial> {
