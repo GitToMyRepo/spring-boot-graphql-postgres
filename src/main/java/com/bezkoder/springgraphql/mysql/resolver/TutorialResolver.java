@@ -23,7 +23,7 @@ public class TutorialResolver implements GraphQLResolver<Tutorial> {
 	}
 
 	public Author getAuthor(Tutorial tutorial) {
-		logger.info("Getting author for " + tutorial);
+		logger.debug("Getting author for " + tutorial);
 		return authorRepository.findById(tutorial.getAuthor().getId()).orElseThrow(null);
 	}
 }
