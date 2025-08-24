@@ -5,13 +5,11 @@ import jakarta.persistence.*;
 @Entity
 public class Author {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_seq_gen")
+	@SequenceGenerator(name = "author_seq_gen", sequenceName = "author_seq", allocationSize = 1)
 	private Long id;
 
-	@Column(name = "name", nullable = false)
 	private String name;
-
-	@Column(name = "age")
 	private Integer age;
 
 	public Author() {

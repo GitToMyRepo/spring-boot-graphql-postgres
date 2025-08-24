@@ -1,7 +1,6 @@
-# Spring Boot + GraphQL + MySQL example
+# Spring Boot + GraphQL + Postgres example
 
-For more detail, please visit:
-> [Spring Boot + GraphQL + MySQL example](https://bezkoder.com/spring-boot-graphql-mysql-jpa/)
+It is a Postgres database version of _spring-boot-graphql-mysql_ (https://github.com/GitToMyRepo/spring-boot-graphql-mysql).
 
 ## Run Spring Boot application
 ```
@@ -10,69 +9,49 @@ mvn spring-boot:run
 
 ## Connect to the database
 ```
-PS C:\Users\kenwu> docker exec -it mysql-graphql-db bash
-bash-4.4# mysql -uroot -p123456
-mysql: [Warning] Using a password on the command line interface can be insecure.
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 8
-Server version: 8.2.0 MySQL Community Server - GPL
+PS C:\Users\kenwu> docker exec -it spring-test-postgres-container psql -U postgres
+psql (16.2 (Debian 16.2-1.pgdg120+2))
+Type "help" for help.
+```
+## Show all databases:
+```
+postgres=# \l
+List of databases
+Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+------------+------------+------------+-----------+-----------------------
+postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
+template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+|          |          |                 |            |            |            |           | postgres=CTc/postgres
+template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+|          |          |                 |            |            |            |           | postgres=CTc/postgres
+user-db   | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
+(4 rows)
+```
 
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+## Use _user-db_ database
+```
+postgres=# \c user-db
+You are now connected to database "user-db" as user "postgres".
+user-db=# \dt
+                 List of relations
+ Schema |         Name          | Type  |  Owner
+--------+-----------------------+-------+----------
+ public | author                | table | postgres
+ public | databasechangelog     | table | postgres
+ public | databasechangeloglock | table | postgres
+ public | tutorial              | table | postgres
+(4 rows)
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-| testdb             |
-+--------------------+
-5 rows in set (0.01 sec)
-
-mysql> use testdb;
-Database changed
+user-db=# select current_database();
+ current_database
+------------------
+ user-db
+(1 row)
 ```
 
 ## Create Test Data
 ```
-C:\idev\graphql\spring-boot-graphql-mysql\liquibase>liquibase --changeLogFile=dbchangelog.sql update
-####################################################
-##   _     _             _ _                      ##
-##  | |   (_)           (_) |                     ##
-##  | |    _  __ _ _   _ _| |__   __ _ ___  ___   ##
-##  | |   | |/ _` | | | | | '_ \ / _` / __|/ _ \  ##
-##  | |___| | (_| | |_| | | |_) | (_| \__ \  __/  ##
-##  \_____/_|\__, |\__,_|_|_.__/ \__,_|___/\___|  ##
-##              | |                               ##
-##              |_|                               ##
-##                                                ##
-##  Get documentation at docs.liquibase.com       ##
-##  Get certified courses at learn.liquibase.com  ##
-##                                                ##
-####################################################
-Starting Liquibase at 20:58:17 (version 4.26.0 #1141 built at 2024-02-06 21:31+0000)
-Liquibase Version: 4.26.0
-Liquibase Open Source 4.26.0 by Liquibase
-Running Changeset: dbchangelog.sql::001::author-inserts
-Running Changeset: dbchangelog.sql::001::tutorial-inserts
-
-UPDATE SUMMARY
-Run:                          2
-Previously run:               0
-Filtered out:                 0
--------------------------------
-Total change sets:            2
-
-Liquibase: Update has been successful. Rows affected: 56
-Liquibase command 'update' was executed successfully.
+mvn clean install
 ```
 
 ## Calling GraphQL endpoint from Postman

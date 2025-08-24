@@ -5,17 +5,15 @@ import jakarta.persistence.*;
 @Entity
 public class Tutorial {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tutorial_seq_gen")
+	@SequenceGenerator(name = "tutorial_seq_gen", sequenceName = "tutorial_seq", allocationSize = 1)
 	private Long id;
 
-	@Column(name = "title", nullable = false)
 	private String title;
-
-	@Column(name = "description")
 	private String description;
 
 	@ManyToOne
-	@JoinColumn(name = "author_id", nullable = false, updatable = false)
+	@JoinColumn(name = "author_id")
 	private Author author;
 
 	public Tutorial() {
