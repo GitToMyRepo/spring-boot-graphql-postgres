@@ -62,11 +62,13 @@ mvn clean install
 
 ## Calling GraphQL endpoint from Postman
 
-1. Endpoint
+### Endpoint
 ```
 http://localhost:8080/apis/graphql
 ```
-2. GraphQL Query
+### _findAllTutorials_ GraphQL Query
+
+#### Request
 ```
 query {
   findAllTutorials {
@@ -82,7 +84,7 @@ query {
 }
 ```
 
-3. Response
+#### Response
 ```
 {
     "data": {
@@ -289,6 +291,71 @@ query {
             }
         ]
     }
+}
+```
+
+### _getRequestReasons_ GraphQL Query
+
+It returns the reason in the header in _findAllTutorials_ request. 
+
+#### Request
+```
+query {
+  getRequestReasons(reasonFragment: "findAllTutorials") {
+    requestReason
+    timestamp
+  }
+}
+```
+
+
+### _getRequestReasonsByAuthor_ GraphQL Query
+
+It returns the reason in the header in any request and its request time, and its response contains author name is "George Orwell".
+
+#### Request
+```
+query {
+  getRequestReasonsByAuthor(authorName: "George Orwell") {
+    requestReason
+    timestamp
+  }
+}
+```
+#### Sample response that matches the request condition
+
+```
+{
+    "data": {
+        "findAllTutorials": [{
+            "id": "1",
+            "title": "1984",
+            "description": "Dystopian novel",
+            "author": {
+                "id": "1",
+                "name": "George Orwell",
+                "age": 51
+            }
+        },
+```
+
+### _findTutorialsByAuthorName_ GraphQL Query
+
+It returns the tutorials with specific name, e.g. "George Orwell".
+
+#### Request
+```
+query {
+  findTutorialsByAuthorName(authorName: "George Orwell") {
+    id
+    title
+    description
+    author {
+      id
+      name
+      age
+    }
+  }
 }
 ```
 

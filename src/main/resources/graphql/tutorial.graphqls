@@ -8,6 +8,7 @@ type Tutorial {
 extend type Query {
 	findAllTutorials: [Tutorial]!
 	countTutorials: Long!
+	findTutorialsByAuthorName(authorName: String!): [Tutorial]!
 }
 
 extend type Mutation {

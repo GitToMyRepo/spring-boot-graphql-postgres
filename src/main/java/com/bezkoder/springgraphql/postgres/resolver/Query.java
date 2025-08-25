@@ -46,4 +46,8 @@ public class Query implements GraphQLQueryResolver {
 		return tutorialRepository.count();
 	}
 
+	public Iterable<Tutorial> findTutorialsByAuthorName(String authorName) {
+		logger.info("Finding tutorials by author: {}", authorName);
+		return tutorialRepository.findByAuthor_NameIgnoreCase(authorName);
+	}
 }

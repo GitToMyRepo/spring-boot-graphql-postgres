@@ -7,12 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class SpringBootGraphqlMysqlApplication {
-	private static final Logger logger = LoggerFactory.getLogger(SpringBootGraphqlMysqlApplication.class);
+public class SpringBootGraphqlPostgresApplication {
+	private static final Logger logger = LoggerFactory.getLogger(SpringBootGraphqlPostgresApplication.class);
 
 	public static void main(String[] args) {
 		logger.info("Starting up SpringBootGraphqlMysqlApplication");
-		SpringApplication.run(SpringBootGraphqlMysqlApplication.class, args);
+		SpringApplication.run(SpringBootGraphqlPostgresApplication.class, args);
 	}
 
 	@Bean
