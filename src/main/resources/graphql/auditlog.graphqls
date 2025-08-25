@@ -1,0 +1,9 @@
+type AuditLogDTO {
+    requestReason: String
+    timestamp: String
+}
+
+extend type Query {
+    getRequestReasons(reasonFragment: String!): [AuditLogDTO]
+    getRequestReasonsByAuthor(authorName: String!): [AuditLogDTO]
+}
