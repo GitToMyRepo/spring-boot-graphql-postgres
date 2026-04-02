@@ -6,17 +6,17 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.5</version>
+		<version>3.2.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bezkoder</groupId>
+	<groupId>com.mywork</groupId>
 	<name>spring-boot-graphql-postgres</name>
 	<artifactId>spring-boot-graphql-postgres</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Demo project for Spring Boot GraphQL server with Postgres database</description>
 
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 		<log4j.version>2.7</log4j.version>
 		<log4j-slf4j-impl.version>2.7</log4j-slf4j-impl.version>
 	</properties>
@@ -33,17 +33,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.graphql-java-kickstart</groupId>
-			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>15.0.0</version>
+			<groupId>com.netflix.graphql.dgs</groupId>
+			<artifactId>graphql-dgs-spring-boot-starter</artifactId>
+			<version>8.4.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java-tools</artifactId>
-			<version>5.2.4</version>
-		</dependency>
-		
 		<dependency>
 		  <groupId>com.graphql-java</groupId>
 		  <artifactId>graphql-java-extended-scalars</artifactId>

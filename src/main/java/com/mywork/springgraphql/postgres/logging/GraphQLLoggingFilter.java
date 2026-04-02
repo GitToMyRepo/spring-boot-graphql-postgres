@@ -1,7 +1,7 @@
-package com.bezkoder.springgraphql.postgres.logging;
+package com.mywork.springgraphql.postgres.logging;
 
-import com.bezkoder.springgraphql.postgres.model.GraphQLAuditLog;
-import com.bezkoder.springgraphql.postgres.repository.GraphQLAuditLogRepository;
+import com.mywork.springgraphql.postgres.model.GraphQLAuditLog;
+import com.mywork.springgraphql.postgres.repository.GraphQLAuditLogRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,7 +42,6 @@ public class GraphQLLoggingFilter extends OncePerRequestFilter {
 
         String requestBody = new String(wrappedRequest.getContentAsByteArray(), StandardCharsets.UTF_8);
 
-        // Skip logging for getRequestReasons queries
         if (requestBody.contains("getRequestReasons")) {
             logger.info("request body contains getRequestReasons");
             wrappedResponse.copyBodyToResponse();
