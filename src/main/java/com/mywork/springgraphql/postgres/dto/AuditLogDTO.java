@@ -1,4 +1,4 @@
-package com.bezkoder.springgraphql.postgres.dto;
+package com.mywork.springgraphql.postgres.dto;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

@@ -1,4 +1,4 @@
-package com.bezkoder.springgraphql.postgres.model;
+package com.mywork.springgraphql.postgres.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +16,7 @@ public class Author {
 	private String name;
 	private Integer age;
 
-	public Author() {
-	}
+	public Author() {}
 
 	public Author(Long id) {
 		this.id = id;
@@ -28,29 +27,14 @@ public class Author {
 		this.age = age;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+	public Long getId() { return id; }
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
+	public Integer getAge() { return age; }
+	public void setAge(Integer age) { this.age = age; }
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", age=" + age + "]";
 	}
-
 }
